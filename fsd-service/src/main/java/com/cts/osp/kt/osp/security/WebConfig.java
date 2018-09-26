@@ -32,7 +32,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter{
 
 	// this configuration allow the client app to access the this api 
 	// all the domain that consume this api must be included in the allowed o'rings 
-	@SuppressWarnings("deprecation")
+
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 	    return new WebMvcConfigurerAdapter() {

@@ -28,7 +28,7 @@ import {FacebookModule} from "ngx-facebook";
   
   ],
   imports: [
-   BrowserModule,HttpModule,FormsModule
+   BrowserModule,HttpModule,FormsModule,
     AppRoutingModule
   ],
   providers: [AuthService,AccountService,UrlPermission],
