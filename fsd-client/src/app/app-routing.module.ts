@@ -6,11 +6,14 @@ import { AdminviewComponent } from './components/adminview/adminview.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import {UrlPermission} from "./urlPermission/url-permission";
+import { ViewpolicyComponent } from './components/viewpolicy/viewpolicy.component';
+
 
 
 const routes: Routes = [
   { path: 'userview', component: UserviewComponent canActivate: [UrlPermission] },
   { path: 'adminview', component: AdminviewComponent canActivate: [UrlPermission] },
+   { path: 'viewpolicy', component: ViewpolicyComponent canActivate: [UrlPermission] },
   { path: 'login', component: LoginComponent  },
    { path: 'register', component: RegisterComponent canActivate: [UrlPermission]  },
    { path: '**', redirectTo: '/login' }
