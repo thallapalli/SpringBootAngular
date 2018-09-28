@@ -4,7 +4,7 @@ import {Policy} from "../../model/policy.model";
 import {Router} from "@angular/router";
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import {RequestOptions, Request, RequestMethod} from '@angular/http';
 
 @Component({
   selector: 'app-policies',
