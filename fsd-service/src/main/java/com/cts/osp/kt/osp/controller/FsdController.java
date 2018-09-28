@@ -82,6 +82,12 @@ public class FsdController {
 		// TODO Auto-generated method stub
 		return policyService.findByname("test");
 	}
+	@CrossOrigin
+	@GetMapping("/readpolicies")
+	public Iterable<Policy> readPolicies() {
+		// TODO Auto-generated method stub
+		return policyService.findAll();
+	}
 
 	
 	
