@@ -17,6 +17,9 @@ import {FacebookModule} from "ngx-facebook";
 import {UrlPermission} from "./urlPermission/url-permission";
 
 import { HttpClientModule } from '@angular/common/http';
+import { CarService } from './services/car.service';
+import { CarListComponent } from './components/car-list/car-list.component';
+
 
 
 @NgModule({
@@ -26,6 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
     AdminviewComponent,
     LoginComponent,
     RegisterComponent,
+    CarListComponent,
     
   
   ],
@@ -33,7 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
    BrowserModule,HttpModule,FormsModule,
     AppRoutingModule,HttpClientModule,
   ],
-  providers: [AuthService,AccountService,UrlPermission,],
+  providers: [AuthService,AccountService,UrlPermission,CarService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
