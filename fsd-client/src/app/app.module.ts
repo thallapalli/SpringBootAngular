@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+
 import { AppComponent } from './app.component';
 import { UserviewComponent } from './components/userview/userview.component';
 import { AdminviewComponent } from './components/adminview/adminview.component';
@@ -46,9 +47,12 @@ import { HomeComponent } from './components/home/home.component';
   
   ],
   imports: [
-   BrowserModule,HttpModule,FormsModule,
-    AppRoutingModule,HttpClientModule,
-      BrowserAnimationsModule,
+    BrowserModule,
+    HttpModule,
+    FormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
     MatButtonModule,
     MatCardModule,
     MatInputModule,
