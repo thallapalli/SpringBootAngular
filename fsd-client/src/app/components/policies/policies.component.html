@@ -1,4 +1,4 @@
-<h1>Angular 4 CRUD Example</h1>
+<h1>Create Update Policies</h1>
 <h3 *ngIf="articleNameToUpdate; else create"> 
    Update Article for Id: {{policyNameToUpdate}}
 </h3>
@@ -40,9 +40,9 @@
 <h3>Policy Details</h3>
 <table>
   <tr><th> name</th> <th>Details</th><th>Date</th><th></th><th></th></tr>
-  <tr *ngFor="let article of allArticles" >
+  <tr *ngFor="let policy of policies" >
         <td>{{policy.name}}</td> <td>{{policy.details}}</td> <td>{{policy.expiryDate}}</td>
-	<td><button type="button" (click)="loadPolicyToEdit(article.id)">Edit</button> </td> 
+	<td><button type="button" (click)="loadPolicyToEdit(policy.name)">Edit</button> </td> 
 	
   </tr>
 </table> 

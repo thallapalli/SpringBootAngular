@@ -28,10 +28,13 @@ export class PoliciesComponent implements OnInit {
   constructor(private policyService: PolicyService) { }
 
   ngOnInit() {
+  console.log('Onint');
  this.getAllpolicies();
   }
   getAllpolicies(){
+  console.log('getAllpolicies');
    this.policyService.getAll().subscribe(data => {
+    console.log(data);
       this.policies = data;
     });
   }

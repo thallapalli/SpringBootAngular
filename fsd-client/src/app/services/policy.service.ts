@@ -30,8 +30,7 @@ export class PolicyService {
     getPolicyByName(policyname: string): Observable<Policy> {
 	let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
 	let options = new RequestOptions({ headers: cpHeaders });
-	console.log(this.policyId +"/"+ policyId);
-	return this.http.get('http://localhost:8080/fsd/policy/'+policyname+'details')
+	return this.http.get('http://localhost:8080/fsd/policy/'+policyname+'/details')
 	   .map(this.extractData)
 	   .catch(this.handleError);
     }	
