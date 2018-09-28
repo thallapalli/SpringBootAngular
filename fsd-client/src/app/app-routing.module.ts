@@ -6,8 +6,6 @@ import { AdminviewComponent } from './components/adminview/adminview.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import {UrlPermission} from "./urlPermission/url-permission";
-import { ViewpolicyComponent } from './components/viewpolicy/viewpolicy.component';
-
 
 
 const routes: Routes = [
