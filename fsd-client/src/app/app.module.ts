@@ -19,7 +19,9 @@ import {UrlPermission} from "./urlPermission/url-permission";
 import { HttpClientModule } from '@angular/common/http';
 import { CarService } from './services/car.service';
 import { CarListComponent } from './components/car-list/car-list.component';
-
+import { MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CarEditComponent } from './components/car-edit/car-edit.component';
 
 
 @NgModule({
@@ -30,12 +32,20 @@ import { CarListComponent } from './components/car-list/car-list.component';
     LoginComponent,
     RegisterComponent,
     CarListComponent,
+    CarEditComponent,
+  
     
   
   ],
   imports: [
    BrowserModule,HttpModule,FormsModule,
     AppRoutingModule,HttpClientModule,
+      BrowserAnimationsModule,
+    MatButtonModule,
+    MatCardModule,
+    MatInputModule,
+    MatListModule,
+    MatToolbarModule,
   ],
   providers: [AuthService,AccountService,UrlPermission,CarService,],
   bootstrap: [AppComponent]
