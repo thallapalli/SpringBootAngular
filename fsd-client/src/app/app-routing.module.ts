@@ -9,6 +9,9 @@ import {UrlPermission} from "./urlPermission/url-permission";
 import {CarListComponent} from "./components/car-list/car-list.component";
 import { CarEditComponent } from './components/car-edit/car-edit.component';
 import { PoliciesComponent } from './components/policies/policies.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
+
 
 
 
@@ -25,6 +28,10 @@ const routes: Routes = [
     path: 'car-edit/:id',
     component: CarEditComponent
   },
+  {
+path: '',
+component: HomeComponent
+},
   
   { path: 'login', component: LoginComponent  },
    { path: 'register', component: RegisterComponent, canActivate: [UrlPermission]  },

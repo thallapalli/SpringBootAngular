@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { UserviewComponent } from './components/userview/userview.component';
@@ -24,6 +25,8 @@ import { MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolb
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarEditComponent } from './components/car-edit/car-edit.component';
 import { PoliciesComponent } from './components/policies/policies.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
@@ -36,6 +39,8 @@ import { PoliciesComponent } from './components/policies/policies.component';
     CarListComponent,
     CarEditComponent,
     PoliciesComponent,
+    NavbarComponent,
+    HomeComponent,
   
     
   
@@ -49,6 +54,7 @@ import { PoliciesComponent } from './components/policies/policies.component';
     MatInputModule,
     MatListModule,
     MatToolbarModule,
+    NgbModule.forRoot(),
   ],
   providers: [AuthService,AccountService,UrlPermission,CarService,],
   bootstrap: [AppComponent]
