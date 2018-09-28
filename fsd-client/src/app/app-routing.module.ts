@@ -18,19 +18,19 @@ import { HomeComponent } from './components/home/home.component';
 const routes: Routes = [
   { path: 'userview', component: UserviewComponent, canActivate: [UrlPermission] },
   { path: 'adminview', component: AdminviewComponent ,canActivate: [UrlPermission] },
-  { path: 'cars', component: CarListComponent},
-  { path: 'policies', component: PoliciesComponent},
+  { path: 'cars', component: CarListComponent,canActivate: [UrlPermission]},
+  { path: 'policies', component: PoliciesComponent,canActivate: [UrlPermission]},
   {
     path: 'car-add',
-    component: CarEditComponent
+    component: CarEditComponent,canActivate: [UrlPermission]
   },
   {
     path: 'car-edit/:id',
-    component: CarEditComponent
+    component: CarEditComponent,canActivate: [UrlPermission]
   },
   {
 path: '',
-component: HomeComponent
+component: HomeComponent,canActivate: [UrlPermission]
 },
   
   { path: 'login', component: LoginComponent  },
