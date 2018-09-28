@@ -59,7 +59,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter{
 		// starts authorizing configurations
 		.authorizeRequests()
 		// ignoring the guest's urls "
-		.antMatchers("/fsd/register","/fsd/login","/logout").permitAll()
+		.antMatchers("/fsd/register","/fsd/login","/logout","/**").permitAll()
 		// authenticate all remaining URLS
 		.anyRequest().fullyAuthenticated().and()
       /* "/logout" will log the user out by invalidating the HTTP Session,

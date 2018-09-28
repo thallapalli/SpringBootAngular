@@ -9,11 +9,11 @@ import {UrlPermission} from "./urlPermission/url-permission";
 
 
 const routes: Routes = [
-  { path: 'userview', component: UserviewComponent canActivate: [UrlPermission] },
-  { path: 'adminview', component: AdminviewComponent canActivate: [UrlPermission] },
-   { path: 'viewpolicy', component: ViewpolicyComponent canActivate: [UrlPermission] },
+  { path: 'userview', component: UserviewComponent, canActivate: [UrlPermission] },
+  { path: 'adminview', component: AdminviewComponent ,canActivate: [UrlPermission] },
+  
   { path: 'login', component: LoginComponent  },
-   { path: 'register', component: RegisterComponent canActivate: [UrlPermission]  },
+   { path: 'register', component: RegisterComponent, canActivate: [UrlPermission]  },
    { path: '**', redirectTo: '/login' }
   
 ];

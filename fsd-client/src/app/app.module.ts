@@ -15,7 +15,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { FormsModule } from '@angular/forms';
 import {FacebookModule} from "ngx-facebook";
 import {UrlPermission} from "./urlPermission/url-permission";
-import {FacebookModule} from "ngx-facebook";
+
 import { HttpClientModule } from '@angular/common/http';
 
 
