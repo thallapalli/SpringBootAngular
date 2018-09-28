@@ -18,10 +18,12 @@ import {UrlPermission} from "./urlPermission/url-permission";
 
 import { HttpClientModule } from '@angular/common/http';
 import { CarService } from './services/car.service';
+import { PolicyService } from './services/policy.service';
 import { CarListComponent } from './components/car-list/car-list.component';
 import { MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarEditComponent } from './components/car-edit/car-edit.component';
+import { PoliciesComponent } from './components/policies/policies.component';
 
 
 @NgModule({
@@ -33,6 +35,7 @@ import { CarEditComponent } from './components/car-edit/car-edit.component';
     RegisterComponent,
     CarListComponent,
     CarEditComponent,
+    PoliciesComponent,
   
     
   

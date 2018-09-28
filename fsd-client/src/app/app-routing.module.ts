@@ -8,12 +8,15 @@ import { RegisterComponent } from './components/register/register.component';
 import {UrlPermission} from "./urlPermission/url-permission";
 import {CarListComponent} from "./components/car-list/car-list.component";
 import { CarEditComponent } from './components/car-edit/car-edit.component';
+import { PoliciesComponent } from './components/policies/policies.component';
+
 
 
 const routes: Routes = [
   { path: 'userview', component: UserviewComponent, canActivate: [UrlPermission] },
   { path: 'adminview', component: AdminviewComponent ,canActivate: [UrlPermission] },
   { path: 'cars', component: CarListComponent},
+  { path: 'policies', component: PoliciesComponent},
   {
     path: 'car-add',
     component: CarEditComponent
