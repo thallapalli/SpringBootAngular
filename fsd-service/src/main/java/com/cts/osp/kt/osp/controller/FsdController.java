@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cts.osp.kt.osp.dao.UserPolicyRepository;
+import com.cts.osp.kt.osp.dao.UserRepository;
 import com.cts.osp.kt.osp.entity.AppUser;
 import com.cts.osp.kt.osp.entity.Policy;
+import com.cts.osp.kt.osp.entity.UserPolicy;
 import com.cts.osp.kt.osp.exception.CustomErrorType;
 import com.cts.osp.kt.osp.service.PolicyService;
 import com.cts.osp.kt.osp.service.UserService;
@@ -35,7 +38,8 @@ public class FsdController {
 	private UserService userService;
 	@Autowired
 	private PolicyService policyService;
-
+	@Autowired
+	private UserPolicyRepository userPolicyRepository;
 	// request method to create a new account by a guest
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -83,6 +87,11 @@ public class FsdController {
 	public Iterable<Policy> readPolicies() {
 		// TODO Auto-generated method stub
 		return policyService.findAll();
+	}
+	@GetMapping("/userpolicies")
+	public Iterable<UserPolicy> fetchUserPolicies() {
+		return userPolicyRepository.findAll();
+		
 	}
 
 	
