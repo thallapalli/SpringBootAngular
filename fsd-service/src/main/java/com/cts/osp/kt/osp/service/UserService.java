@@ -1,5 +1,7 @@
 package com.cts.osp.kt.osp.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +30,8 @@ public class UserService {
 
 	public AppUser find(Long id) {
 		return userRepository.findOne(id);
+	}
+	public List<AppUser> fetchAllUsers(){
+		return userRepository.findAll();
 	}
 }
