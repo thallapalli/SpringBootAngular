@@ -13,32 +13,34 @@ import {RequestOptions, Request, RequestMethod} from '@angular/http';
 })
 export class PoliciesComponent implements OnInit {
 
-  policies:Policy[];
-  statusCode: number;
+   policies:Policy[];
+   statusCode: number;
    requestProcessing = false;
-   policyNameToUpdate = null;
+   policyIdToUpdate = null;
    processValidation = false;
    
     //Create form
    policyForm = new FormGroup({
+   	  id:new FormControl('', Validators.required),
        name: new FormControl('', Validators.required),
-       details: new FormControl('', Validators.required)	
+       details: new FormControl('', Validators.required)	,
        expiryDate: new FormControl()
    });
   constructor(private policyService: PolicyService) { }
 
   ngOnInit() {
-  console.log('Onint');
- this.getAllpolicies();
-  }
-  getAllpolicies(){
-  console.log('getAllpolicies');
-   this.policyService.getAll().subscribe(data => {
-    console.log(data);
-      this.policies = data;
-    });
-  }
   
+ this.getAllPolicies();
+  }
+  getAllPolicies() {
+  console.log('hello');
+        this.policyService.getAllPolicies()
+	  .subscribe(
+                data => this.policies = data,
+                errorCode =>  this.statusCode = errorCode);   
+                
+                console.log(this.statusCode);
+   }
   
   onPolicyFormSubmit() {
 	  this.processValidation = true;   
@@ -48,13 +50,15 @@ export class PoliciesComponent implements OnInit {
 	  //Form is valid, now perform create or update
           this.preProcessConfigurations();
 	  let policy = this.policyForm.value;
-	  if (this.policyIdToUpdate === null) {  
-	    //Generate policy id then create article
-            this.articleService.getAllPolicies()
+	  if (this.policyIdToUpdate === null) { 
+	  
+	 this.policyService.getAllPolicies()
 	      .subscribe(policies => {
 			 
-		
-		   //Create policy
+		   //Generate article id	 
+		 
+		   
+		   //Create article
      	           this.policyService.createPolicy(policy)
 			  .subscribe(successCode => {
 				   this.statusCode = successCode;
@@ -64,9 +68,11 @@ export class PoliciesComponent implements OnInit {
 				 errorCode => this.statusCode = errorCode
 			   );
 		 });		
+	  
+	  
 	   } else {  
    	     //Handle update article
-             policy.name = this.policyNameToUpdate; 		
+             policy.name = this.policyIdToUpdate; 		
 	     this.policyService.updatePolicy(policy)
 	        .subscribe(successCode => {
 		     this.statusCode = successCode;
@@ -77,12 +83,12 @@ export class PoliciesComponent implements OnInit {
 	   }
    }
    
-    loadPolicyToEdit(policyName: string) {
+    loadPolicyToEdit(policyId: number) {
       this.preProcessConfigurations();
-      this.policyService.getPolicyByName(policyName)
+      this.policyService.getPolicyById(policyId)
 	   .subscribe(policy => {
-	            this.policyNameToUpdate = article.id;   
-	            this.policyForm.setValue({ name: policy.name, details: policy.details });
+	            this.policyIdToUpdate = policy.id;   
+	            this.policyForm.setValue({ id:policy.id,name:policy.name,details:policy.details,expiryDate:policy.expiryDate });
 	   	    this.processValidation = true;
 		    this.requestProcessing = false;   
 	   },
@@ -95,7 +101,7 @@ export class PoliciesComponent implements OnInit {
    }
    //Go back from update to create
    backToCreatePolicy() {
-      this.policyNameToUpdate = null;
+      this.policyIdToUpdate = null;
       this.policyForm.reset();	  
       this.processValidation = false;
    }

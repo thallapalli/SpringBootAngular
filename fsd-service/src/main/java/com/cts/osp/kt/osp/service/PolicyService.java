@@ -19,12 +19,13 @@ public class PolicyService {
 		return policyRepository.save(policy);
 	}
 
-	public Policy findByname(String name) {
-		return policyRepository.findByname(name);
+	public Policy findById(Long id) {
+		return policyRepository.findById(id);
 	}
 	public Iterable<Policy> findAll() {
 		return policyRepository.findAll();
 	}
+	
 
 	
 

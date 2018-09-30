@@ -10,6 +10,7 @@ import com.cts.osp.kt.osp.entity.Policy;
 public interface PolicyRepository extends  CrudRepository<Policy, Long> {
 
 	Policy findByname(String name);
+	Policy findById(Long id);
 	
 
 }

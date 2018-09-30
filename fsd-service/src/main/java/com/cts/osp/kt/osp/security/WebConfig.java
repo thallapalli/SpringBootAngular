@@ -1,8 +1,11 @@
 package com.cts.osp.kt.osp.security;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -38,7 +41,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter{
 	    return new WebMvcConfigurerAdapter() {
 	        @Override
 	        public void addCorsMappings(CorsRegistry registry) {
-	            registry.addMapping("/**").allowedOrigins("http://localhost:4200");
+	            registry.addMapping("/**").allowedOrigins("*").allowedMethods("*");
 	          
 	        }
 	    };
@@ -60,6 +63,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter{
 		.authorizeRequests()
 		// ignoring the guest's urls "
 		.antMatchers("/fsd/register","/fsd/login","/logout","/**").permitAll()
+		.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 		// authenticate all remaining URLS
 		.anyRequest().fullyAuthenticated().and()
       /* "/logout" will log the user out by invalidating the HTTP Session,
@@ -73,6 +77,6 @@ public class WebConfig extends WebSecurityConfigurerAdapter{
 		// configuring the session on the server
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).and()
 		// disabling the CSRF - Cross Site Request Forgery
-		.csrf().disable();
+		 .csrf().disable();
 	}
 }

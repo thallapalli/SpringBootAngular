@@ -28,7 +28,7 @@ export class CarEditComponent implements OnInit,OnDestroy  {
             this.car = car;
             this.car.href = car._links.self.href;
           } else {
-            console.log(`Car with id '${id}' not found, returning to list`);
+            console.log('Car with id '${id}' not found, returning to list');
             this.gotoList();
           }
         });

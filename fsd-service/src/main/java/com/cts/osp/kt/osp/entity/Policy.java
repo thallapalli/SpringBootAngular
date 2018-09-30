@@ -15,8 +15,9 @@ public class Policy implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String name;
+	@SequenceGenerator(name="POLICY_ID_GENERATOR", sequenceName="SEQ_POLICY_ID")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="POLICY_ID_GENERATOR")
+	private long id;
 
 	private String details;
 
@@ -24,15 +25,17 @@ public class Policy implements Serializable {
 	@Column(name="EXPIRY_DATE")
 	private Date expiryDate;
 
+	private String name;
+
 	public Policy() {
 	}
 
-	public String getName() {
-		return this.name;
+	public long getId() {
+		return this.id;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getDetails() {
@@ -49,6 +52,14 @@ public class Policy implements Serializable {
 
 	public void setExpiryDate(Date expiryDate) {
 		this.expiryDate = expiryDate;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cts.osp.kt.osp.entity.AppUser;
@@ -37,7 +38,6 @@ public class FsdController {
 
 	// request method to create a new account by a guest
 	@SuppressWarnings("unchecked")
-	@CrossOrigin
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity<?> createUser(@RequestBody AppUser newUser) {
 		if (userService.find(newUser.getUsername()) != null) {
@@ -52,37 +52,33 @@ public class FsdController {
 	}
 
 	// this is the login api/service
-	@CrossOrigin
 	@RequestMapping("/login")
 	public Principal user(Principal principal) {
 		logger.info("user logged "+principal);
 		return principal;
 	}
-	@CrossOrigin
-	@GetMapping("/sayhello")
+@GetMapping("/sayhello")
 	public String greetMe() {
 		return "Hello Welcome to Springboot";
 		
 	}
-	@CrossOrigin
 	@PutMapping("/policy/save")
+	@ResponseBody
 	public Policy save(@RequestBody Policy policy) {
 		// TODO Auto-generated method stub
 		return policyService.save(policy);
 	}
-	@CrossOrigin
 	@PostMapping("/policy/update")
+	@ResponseBody
 	public Policy updatePolicy(@RequestBody Policy account) {
 		// TODO Auto-generated method stub
 		return policyService.save(account);
 	}
-	@CrossOrigin
-	@GetMapping("/policy/{name}/details")
-	public Policy findPolicyByname(@PathVariable String name) {
+	@GetMapping("/policy/{id}/details")
+	public Policy findPolicyByname(@PathVariable Long id) {
 		// TODO Auto-generated method stub
-		return policyService.findByname("test");
+		return policyService.findById(id);
 	}
-	@CrossOrigin
 	@GetMapping("/readpolicies")
 	public Iterable<Policy> readPolicies() {
 		// TODO Auto-generated method stub
