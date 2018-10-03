@@ -153,7 +153,7 @@ public  class AppUser implements UserDetails{
 	}
 
 	public void setFullName(String fullName) {
-		this.fullName = this.firstName+this.lastName;
+		this.fullName=fullName;
 	}
 
 	public Long getId() {
