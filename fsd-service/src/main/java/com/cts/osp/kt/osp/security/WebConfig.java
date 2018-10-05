@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -62,8 +63,8 @@ public class WebConfig extends WebSecurityConfigurerAdapter{
 		// starts authorizing configurations
 		.authorizeRequests()
 		// ignoring the guest's urls "
-		.antMatchers("/fsd/register","/fsd/login","/logout","/**").permitAll()
-		.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+		//.antMatchers("/fsd/register","/fsd/login","/logout","/**").permitAll() //to disable security
+		.antMatchers("/fsd/register","/fsd/login","/logout").permitAll()
 		// authenticate all remaining URLS
 		.anyRequest().fullyAuthenticated().and()
       /* "/logout" will log the user out by invalidating the HTTP Session,
@@ -77,6 +78,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter{
 		// configuring the session on the server
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).and()
 		// disabling the CSRF - Cross Site Request Forgery
-		 .csrf().disable();
+		 .csrf().disable().addFilter(new JWTAuthenticationFilter(authenticationManager()))
+		 .addFilter(new JWTAuthorizationFilter(authenticationManager()));
 	}
 }
