@@ -13,10 +13,16 @@ export class PolicyService {
   //fetch all policies
   
   getAllPolicies(): Observable<Policy[]> {
-  let headers = new Headers();
+   let headers = new Headers();
+    
     headers.append('Accept', 'application/json')
     // creating base64 encoded String from user name and password
-     let options = new RequestOptions();
+    var pwd= localStorage.getItem('pwd');
+     var usr=localStorage.getItem('user');
+    var localst= localStorage.getItem('currentUser');
+     var base64Credential: string = btoa(usr + ':' + pwd);
+    headers.append("Authorization", "Basic " + base64Credential);
+    let options = new RequestOptions();
     options.headers=headers;
     return this.http.get('http://localhost:8080/fsd/readpolicies',options).map(this.extractData)
 	   .catch(this.handleError);;
@@ -24,25 +30,50 @@ export class PolicyService {
   
  //Create article
     createPolicy(policy: Policy):Observable<number> {
-	let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: cpHeaders });
+	 let headers = new Headers();
+     headers.append('Accept', 'application/json')
+    // creating base64 encoded String from user name and password
+    var pwd= localStorage.getItem('pwd');
+     var usr=localStorage.getItem('user');
+    var localst= localStorage.getItem('currentUser');
+     var base64Credential: string = btoa(usr + ':' + pwd);
+    headers.append("Authorization", "Basic " + base64Credential);
+    let options = new RequestOptions();
+    options.headers=headers;
+    
         return this.http.put('http://localhost:8080/fsd/policy/save', policy, options)
                .map(success => success.status)
                .catch(this.handleError);
     }
     //Fetch article by id
     getPolicyById(Id: number): Observable<Policy> {
-	let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
-	let options = new RequestOptions({ headers: cpHeaders });
-	console.log('http://localhost:8080/fsd/policy' +"/"+ Id+'/details');
-	return this.http.get('http://localhost:8080/fsd/policy' +"/"+Id+'/details')
+	let headers = new Headers();
+     headers.append('Accept', 'application/json')
+    // creating base64 encoded String from user name and password
+    var pwd= localStorage.getItem('pwd');
+     var usr=localStorage.getItem('user');
+    var localst= localStorage.getItem('currentUser');
+     var base64Credential: string = btoa(usr + ':' + pwd);
+    headers.append("Authorization", "Basic " + base64Credential);
+    let options = new RequestOptions();
+    options.headers=headers;
+    
+	return this.http.get('http://localhost:8080/fsd/policy' +"/"+Id+'/details',options)
 	   .map(this.extractData)
 	   .catch(this.handleError);
     }	
     //Update article
     updatePolicy(policy: Policy):Observable<number> {
-	let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: cpHeaders });
+	let headers = new Headers();
+     headers.append('Accept', 'application/json')
+    // creating base64 encoded String from user name and password
+    var pwd= localStorage.getItem('pwd');
+     var usr=localStorage.getItem('user');
+    var localst= localStorage.getItem('currentUser');
+     var base64Credential: string = btoa(usr + ':' + pwd);
+    headers.append("Authorization", "Basic " + base64Credential);
+    let options = new RequestOptions();
+    options.headers=headers;
         return this.http.post('http://localhost:8080/fsd/policy/update', policy, options)
                .map(success => success.status)
                .catch(this.handleError);
