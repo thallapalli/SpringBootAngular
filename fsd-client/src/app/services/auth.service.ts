@@ -31,7 +31,7 @@ export class AuthService {
 
   logOut() {
     // remove user from local storage to log user out
-    return this.http.post(AppComponent.API_URL+"logout",{})
+    return this.http.post(AppComponent.API_URL+"/fsd/logout",{})
       .map((response: Response) => {
         localStorage.removeItem('currentUser');
       });

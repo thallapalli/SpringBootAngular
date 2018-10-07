@@ -11,8 +11,14 @@ export class PolicyService {
   constructor(private http: Http) {
   }
   //fetch all policies
+  
   getAllPolicies(): Observable<Policy[]> {
-    return this.http.get('http://localhost:8080/fsd/readpolicies').map(this.extractData)
+  let headers = new Headers();
+    headers.append('Accept', 'application/json')
+    // creating base64 encoded String from user name and password
+     let options = new RequestOptions();
+    options.headers=headers;
+    return this.http.get('http://localhost:8080/fsd/readpolicies',options).map(this.extractData)
 	   .catch(this.handleError);;
   }
   

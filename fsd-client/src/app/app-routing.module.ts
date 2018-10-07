@@ -11,6 +11,7 @@ import { CarEditComponent } from './components/car-edit/car-edit.component';
 import { PoliciesComponent } from './components/policies/policies.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
+import {CustomInterceptorService} from "./services/custom-interceptor.service";
 
 
 
