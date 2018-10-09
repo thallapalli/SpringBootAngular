@@ -7,6 +7,5 @@
   <button mat-button routerLink="userview">User View</button>
   <button mat-button routerLink="adminview">Admin View</button>
   
-  <button mat-button routerLink="login" *ngIf="!isLoggedIn$|async">Login</button>
   <button mat-button (click)="onLogout()" *ngIf="isLoggedIn$|async">Logout</button>
 </mat-toolbar>

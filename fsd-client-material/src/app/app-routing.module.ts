@@ -21,6 +21,10 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'userview', component: UserviewComponent },
   { path: 'adminview', component: AdminviewComponent },
+  { path: 'register', component: RegisterComponent },
+
+
+
 
 ];
 
