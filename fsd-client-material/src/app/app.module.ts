@@ -14,6 +14,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
+import { UserviewComponent } from './userview/userview.component';
+import { AdminviewComponent } from './adminview/adminview.component';
 
 
 
@@ -26,6 +28,8 @@ import { RegisterComponent } from './register/register.component';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
+    UserviewComponent,
+    AdminviewComponent,
     
   ],
   imports: [
