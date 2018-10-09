@@ -17,9 +17,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { FormsModule } from '@angular/forms';
 import {FacebookModule} from "ngx-facebook";
 import {UrlPermission} from "./urlPermission/url-permission";
-import { CarService } from './services/car.service';
 import { PolicyService } from './services/policy.service';
-import { CarListComponent } from './components/car-list/car-list.component';
 import { MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -36,9 +34,6 @@ import { HomeComponent } from './components/home/home.component';
     AdminviewComponent,
     LoginComponent,
     RegisterComponent,
-    CarListComponent,
-    
-   
     PoliciesComponent,
     NavbarComponent,
     HomeComponent,
@@ -62,7 +57,7 @@ import { HomeComponent } from './components/home/home.component';
   
     NgbModule.forRoot(),
   ],
-  providers: [AuthService,AccountService,UrlPermission,CarService
+  providers: [AuthService,AccountService,UrlPermission,
        
     ],
   bootstrap: [AppComponent]
