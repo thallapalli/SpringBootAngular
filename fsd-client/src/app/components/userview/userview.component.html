@@ -21,7 +21,14 @@
     <p class="lead"> welcome to your profile
     </p>
     <div class="row">
-
+<table>
+  <tr><th> Name</th> <th>Details</th><th>Date</th><th></th><th></th></tr>
+  <tr *ngFor="let policy of policies" >
+  <td>{{policy.id}}</td>
+        <td>{{policy.name}}</td> <td>{{policy.details}}</td> <td>{{policy.expiryDate}}</td>
+	
+  </tr>
+  </table>
 
 
 
