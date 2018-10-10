@@ -2,6 +2,8 @@ package com.cts.osp.kt.osp.security;
 
 import java.util.Arrays;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
@@ -18,11 +20,14 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import com.cts.osp.kt.osp.controller.FsdController;
 import com.cts.osp.kt.osp.service.AppUserDetailsService;
 
 @Configurable
 @EnableWebSecurity
 public class WebConfig extends WebSecurityConfigurerAdapter{
+	public static final Logger logger = LoggerFactory.getLogger(WebConfig.class);
+
 	@Autowired
 	AppUserDetailsService appUserDetailsService;
 
@@ -39,6 +44,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter{
 
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
+		
 	    return new WebMvcConfigurerAdapter() {
 	        @Override
 	        public void addCorsMappings(CorsRegistry registry) {
@@ -59,6 +65,8 @@ public class WebConfig extends WebSecurityConfigurerAdapter{
 	// We can specify our authorization criteria inside this method.
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		logger.info(" start configure");
+		
 		http.cors().and()
 		// starts authorizing configurations
 		.authorizeRequests()
@@ -80,5 +88,8 @@ public class WebConfig extends WebSecurityConfigurerAdapter{
 		// disabling the CSRF - Cross Site Request Forgery
 		 .csrf().disable().addFilter(new JWTAuthenticationFilter(authenticationManager()))
 		 .addFilter(new JWTAuthorizationFilter(authenticationManager()));
+		logger.info(" end configure");
+		
+		
 	}
 }
