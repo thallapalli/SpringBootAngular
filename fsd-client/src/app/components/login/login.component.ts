@@ -1,39 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import {User} from "../../model/model.user";
 import {Router} from "@angular/router";
-import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import {RequestOptions, Request, RequestMethod} from '@angular/http';
 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
-	user:User;
-   errorMessage:string;
-   processValidation = false;
-   
-   loginForm = new FormGroup({
-   	  username:new FormControl('', Validators.required),
-       password: new FormControl('', Validators.required)
-      
-   });
+  user: User=new User();
+  errorMessage:string;
   constructor(private authService :AuthService, private router: Router) { }
- 
+
 
 
   ngOnInit() {
   }
 
-   onloginFormSubmit(){
-   console.log('Here');
-   let user = this.loginForm.value;
-   console.log(user);
-    this.authService.logIn(user)
+  login(){
+    this.authService.logIn(this.user)
       .subscribe(data=>{
         this.router.navigate(['/userview']);
         },err=>{
