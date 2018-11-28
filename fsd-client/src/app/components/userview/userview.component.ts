@@ -19,6 +19,7 @@ export class UserviewComponent implements OnInit {
 
   currentUser: User;
   policies: Policy[];
+  statusCode:String;
    policyForm = new FormGroup({
    	  id:new FormControl('', Validators.required),
        name: new FormControl('', Validators.required),
