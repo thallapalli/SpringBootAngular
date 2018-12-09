@@ -1,3 +1,52 @@
-<p>
-  booking works!
-</p>
+<h1>Create Update Bookings</h1>
+<h3 *ngIf="bookingIdToUpdate; else create"> 
+   Update Booking for Id: {{bookingIdToUpdate}}
+</h3>
+
+<div>
+ <form [formGroup]="bookingForm" (ngSubmit)="onBookingFormSubmit()">
+  <table>
+  <tr><td>booking Id</td><td><input formControlName="bookingId">
+	  <label *ngIf="bookingForm.get('bookingId').invalid && processValidation" [ngClass] = "'error'"> Id is required. </label>
+    </td></tr>
+    <tr><td>Number of Passengers</td><td><input formControlName="numOfPassengers">
+	  <label *ngIf="bookingForm.get('numOfPassengers').invalid && processValidation" [ngClass] = "'error'">Num Of Passengers Required</label>
+    </td></tr>
+    <tr><td>Totla Cost</td><td><input formControlName="totalCost">
+	  <label *ngIf="bookingForm.get('totalCost').invalid && processValidation" [ngClass] = "'error'"> Total Cost is required </label>
+    </td></tr>	
+     <tr><td colspan="2">
+	  <button *ngIf="!bookingIdToUpdate">CREATE</button>  
+	  <button *ngIf="bookingIdToUpdate">UPDATE</button>  
+	  <button (click)="backToCreateBooking()" *ngIf="bookingIdToUpdate">Go Back</button>  
+    </td></tr>
+  </table>
+ </form> 
+ <br/>
+ <div *ngIf="statusCode; else processing">
+   <div *ngIf="statusCode === 201" [ngClass] = "'success'">
+	    Booking added successfully.
+   </div>   
+   <div *ngIf="statusCode === 409" [ngClass] = "'success'">
+        Booking already exists.
+   </div>   	
+   <div *ngIf="statusCode === 200" [ngClass] = "'success'">
+        Booking updated successfully.
+   </div>   	      
+   	   
+   <div *ngIf="statusCode === 500" [ngClass] = "'error'">
+        Internal Server Error.
+   </div>	
+ </div>
+ 
+</div>
+<h3>Booking Details</h3>
+<table>
+  <tr><th>Id</th> <th>numOfPassengers </th><th>Date</th><th></th><th></th></tr>
+  <tr *ngFor="let policy of policies" >
+  <td>{{booking.bookingId}}</td>
+        <td>{{booking.numOfPassengers}}</td> <td>{{booking.details}}</td> <td>{{policy.expiryDate}}</td>
+	<td><button type="button" (click)="loadBookingToEdit(booking.id)">Edit</button> </td> 
+	
+  </tr>
+</table> 
