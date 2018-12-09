@@ -1,0 +1,62 @@
+ 
+ 
+-- USER SQL
+CREATE USER FSD IDENTIFIED BY fsd ;
+
+-- QUOTAS
+
+-- ROLES
+GRANT "DBA" TO FSD WITH ADMIN OPTION;
+ALTER USER FSD DEFAULT ROLE "DBA";
+
+
+
+CREATE TABLE FSD.FSD_CUSTOMER 
+(
+  CUSTOMER_ID NUMBER NOT NULL 
+, EMAIL VARCHAR2(20) NOT NULL 
+, PASSWORD VARCHAR2(20) NOT NULL 
+, CONSTRAINT FSD_CUSTOMER_PK PRIMARY KEY 
+  (
+    ID 
+  )
+  ENABLE 
+);
+
+
+
+CREATE SEQUENCE FSD.HIBERNATE_SEQUENCE INCREMENT BY 1 START WITH 1 MAXVALUE 9999999 MINVALUE 1 NOCACHE ORDER;
+
+
+
+<! --backup sqls -->
+
+
+Hibernate: create table fsd.flight (flight_id number(19,0) not null, airline varchar2(255 char), arrival_time varchar2(255 char), deaprture_time varchar2(255 char), departure_date timestamp, num_of_passengers number(10,0) not null, price number(19,0), primary key (flight_id))
+Hibernate: create table fsd.fsd_customer (customer_id number(19,0) not null, email varchar2(255 char), password varchar2(255 char), primary key (customer_id))
+Hibernate: create sequence hr.hibernate_sequence start with 1 increment by 1
+
+<!-- end of backup sqls -->
+
+<! -- data setup -->
+
+INSERT INTO "FSD"."FLIGHT" (FLIGHT_ID, AIRLINE, ARRIVAL_TIME, DEAPRTURE_TIME, DEPARTURE_DATE, NUM_OF_PASSENGERS, PRICE) VALUES ('1', 'SouthWest', '7.30', '12.20', TO_TIMESTAMP('2018-12-19 01:24:47.299000000', 'YYYY-MM-DD HH24:MI:SS.FF'), '2', '200')
+
+ 
+ 
+ 
+ 
+  CREATE TABLE "FSD1"."BOOKING" 
+   (	"BOOKING_ID" NUMBER NOT NULL ENABLE, 
+	"CUSTOMER_ID" NUMBER, 
+	"FLIGHT_ID" NUMBER, 
+	 CONSTRAINT "BOOKING_PK" PRIMARY KEY ("BOOKING_ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 NOCOMPRESS LOGGING
+  TABLESPACE "USERS"  ENABLE, 
+	 CONSTRAINT "FK_CUSTOMER_ID" FOREIGN KEY ("CUSTOMER_ID")
+	  REFERENCES "FSD1"."CUSTOMER" ("CUSTOMER_ID") ENABLE, 
+	 CONSTRAINT "FK_BOOKING_ID" FOREIGN KEY ("BOOKING_ID")
+	  REFERENCES "FSD1"."BOOKING" ("BOOKING_ID") ENABLE
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;

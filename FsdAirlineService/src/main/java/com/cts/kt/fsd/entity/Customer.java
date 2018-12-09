@@ -6,19 +6,19 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "FSD_CUSTOMER", schema="FSD1")
-public class FsdCustomer {
+@Table(name = "CUSTOMER", schema="FSD1")
+public class Customer {
 	@Id
 	@GeneratedValue
 	public long customerId;
 	public String email;
 	public String password;
 
-	public FsdCustomer() {
+	public Customer() {
 
 	}
 
-	public FsdCustomer(String email, String password) {
+	public Customer(String email, String password) {
 		this.email = email;
 		this.password = password;
 	}

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cts.kt.fsd.entity.Flight;
-import com.cts.kt.fsd.entity.FsdCustomer;
+import com.cts.kt.fsd.entity.Customer;
 import com.cts.kt.fsd.service.FlightService;
 import com.cts.kt.fsd.service.FsdCustomerService;
 
@@ -41,20 +41,20 @@ public class FsdController {
 	}
 
 	@GetMapping("/fsd/fetchallusers")
-	public List<FsdCustomer> fetchAllUsers() {
-		List<FsdCustomer> fetchAllUsers = fsdCustomerService.fetchAllUsers();
+	public List<Customer> fetchAllUsers() {
+		List<Customer> fetchAllUsers = fsdCustomerService.fetchAllUsers();
 		return fetchAllUsers;
 	}
 
 	@GetMapping("/fsd/{email}/details")
-	public FsdCustomer fetchByEmail(@PathVariable String email) {
-		FsdCustomer fsdCustomer = fsdCustomerService.fetchUserByEmail(email);
+	public Customer fetchByEmail(@PathVariable String email) {
+		Customer fsdCustomer = fsdCustomerService.fetchUserByEmail(email);
 		return fsdCustomer;
 	}
 
 	@RequestMapping(value = "/fsd/register", method = RequestMethod.POST)
-	public FsdCustomer saveUser(@RequestBody FsdCustomer fsdCustomer) {
-		FsdCustomer fsdCustomer2 = fsdCustomerService.saveUser(fsdCustomer);
+	public Customer saveUser(@RequestBody Customer fsdCustomer) {
+		Customer fsdCustomer2 = fsdCustomerService.saveUser(fsdCustomer);
 		return fsdCustomer2;
 	}
 }

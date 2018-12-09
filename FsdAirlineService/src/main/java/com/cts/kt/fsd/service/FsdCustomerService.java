@@ -6,26 +6,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cts.kt.fsd.dao.FsdCustomerRepository;
-import com.cts.kt.fsd.entity.FsdCustomer;
+import com.cts.kt.fsd.entity.Customer;
 
 @Service
 public class FsdCustomerService {
 	@Autowired
 	FsdCustomerRepository fsdCustomerRepository;
 
-	public List<FsdCustomer> fetchAllUsers() {
-		List<FsdCustomer> listOfUsers = (List<FsdCustomer>) fsdCustomerRepository.findAll();
+	public List<Customer> fetchAllUsers() {
+		List<Customer> listOfUsers = (List<Customer>) fsdCustomerRepository.findAll();
 		return listOfUsers;
 
 	}
 
-	public FsdCustomer fetchUserByEmail(String email) {
-		FsdCustomer fsdCustomer = fsdCustomerRepository.findByEmail(email);
+	public Customer fetchUserByEmail(String email) {
+		Customer fsdCustomer = fsdCustomerRepository.findByEmail(email);
 		return fsdCustomer;
 
 	}
-	public FsdCustomer saveUser(FsdCustomer fsdCustomer) {
-		FsdCustomer savedfsdCustomer = fsdCustomerRepository.save(fsdCustomer);
+	public Customer saveUser(Customer fsdCustomer) {
+		Customer savedfsdCustomer = fsdCustomerRepository.save(fsdCustomer);
 		return savedfsdCustomer;
 
 	}
