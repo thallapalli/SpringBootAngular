@@ -5,10 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cts.kt.fsd.dao.FsdCustomerRepository;
 import com.cts.kt.fsd.dao.FlightRepository;
 import com.cts.kt.fsd.entity.Flight;
-import com.cts.kt.fsd.entity.Customer;
 
 @Service
 public class FlightService {

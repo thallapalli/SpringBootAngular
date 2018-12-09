@@ -1,30 +1,32 @@
 package com.cts.kt.fsd.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.io.Serializable;
+import javax.persistence.*;
 
+
+/**
+ * The persistent class for the CUSTOMER database table.
+ * 
+ */
 @Entity
-@Table(name = "CUSTOMER", schema="FSD1")
-public class Customer {
+@NamedQuery(name="Customer.findAll", query="SELECT c FROM Customer c")
+public class Customer implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue
-	public long customerId;
-	public String email;
-	public String password;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="CUSTOMER_ID")
+	private long customerId;
+
+	private String email;
+
+	private String password;
 
 	public Customer() {
-
-	}
-
-	public Customer(String email, String password) {
-		this.email = email;
-		this.password = password;
 	}
 
 	public long getCustomerId() {
-		return customerId;
+		return this.customerId;
 	}
 
 	public void setCustomerId(long customerId) {
@@ -32,7 +34,7 @@ public class Customer {
 	}
 
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
 	public void setEmail(String email) {
@@ -40,13 +42,11 @@ public class Customer {
 	}
 
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	
 
 }

@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cts.kt.fsd.dao.FsdCustomerRepository;
+import com.cts.kt.fsd.dao.CustomerRepository;
 import com.cts.kt.fsd.entity.Customer;
 
 @Service
-public class FsdCustomerService {
+public class CustomerService {
 	@Autowired
-	FsdCustomerRepository fsdCustomerRepository;
+	CustomerRepository fsdCustomerRepository;
 
 	public List<Customer> fetchAllUsers() {
 		List<Customer> listOfUsers = (List<Customer>) fsdCustomerRepository.findAll();
