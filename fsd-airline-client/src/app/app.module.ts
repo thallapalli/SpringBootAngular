@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 
 import {UrlPermission} from "./urlPermission/url-permission";
 import { PolicyService } from './services/policy.service';
+import { BookingService } from './services/booking.service';
 import { MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -61,7 +62,7 @@ import { FlightComponent } from './components/flight/flight.component';
   
     NgbModule.forRoot(),
   ],
-  providers: [AuthService,AccountService,UrlPermission,
+  providers: [AuthService,AccountService,BookingService,UrlPermission,
        
     ],
   bootstrap: [AppComponent]
