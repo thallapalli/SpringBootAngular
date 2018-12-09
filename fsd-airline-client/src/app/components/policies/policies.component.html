@@ -1,0 +1,52 @@
+<h1>Create Update Policies</h1>
+<h3 *ngIf="policyIdToUpdate; else create"> 
+   Update Article for Id: {{policyIdToUpdate}}
+</h3>
+
+<div>
+ <form [formGroup]="policyForm" (ngSubmit)="onPolicyFormSubmit()">
+  <table>
+  <tr><td>Policy Id</td><td><input formControlName="id">
+	  <label *ngIf="policyForm.get('id').invalid && processValidation" [ngClass] = "'error'"> Id is required. </label>
+    </td></tr>
+    <tr><td>Enter Name</td><td><input formControlName="name">
+	  <label *ngIf="policyForm.get('name').invalid && processValidation" [ngClass] = "'error'"> Name is required. </label>
+    </td></tr>
+    <tr><td>Enter Details</td><td><input formControlName="details">
+	  <label *ngIf="policyForm.get('details').invalid && processValidation" [ngClass] = "'error'"> Deatils are required. </label>
+    </td></tr>	
+     <tr><td colspan="2">
+	  <button *ngIf="!policyIdToUpdate">CREATE</button>  
+	  <button *ngIf="policyIdToUpdate">UPDATE</button>  
+	  <button (click)="backToCreatePolicy()" *ngIf="policyIdToUpdate">Go Back</button>  
+    </td></tr>
+  </table>
+ </form> 
+ <br/>
+ <div *ngIf="statusCode; else processing">
+   <div *ngIf="statusCode === 201" [ngClass] = "'success'">
+	    APolicy added successfully.
+   </div>   
+   <div *ngIf="statusCode === 409" [ngClass] = "'success'">
+        Policy already exists.
+   </div>   	
+   <div *ngIf="statusCode === 200" [ngClass] = "'success'">
+        Policy updated successfully.
+   </div>   	      
+   	   
+   <div *ngIf="statusCode === 500" [ngClass] = "'error'">
+        Internal Server Error.
+   </div>	
+ </div>
+ 
+</div>
+<h3>Policy Details</h3>
+<table>
+  <tr><th> name</th> <th>Details</th><th>Date</th><th></th><th></th></tr>
+  <tr *ngFor="let policy of policies" >
+  <td>{{policy.id}}</td>
+        <td>{{policy.name}}</td> <td>{{policy.details}}</td> <td>{{policy.expiryDate}}</td>
+	<td><button type="button" (click)="loadPolicyToEdit(policy.id)">Edit</button> </td> 
+	
+  </tr>
+</table> 
