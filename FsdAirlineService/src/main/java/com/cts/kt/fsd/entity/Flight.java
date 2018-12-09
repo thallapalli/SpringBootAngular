@@ -27,12 +27,12 @@ public class Flight implements Serializable {
 
 	@Column(name="DEAPRTURE_TIME")
 	private String deaprtureTime;
+	@Column(name="SOURCE")
+	private String source;
+	@Column(name="DESTINATION")
+	private String destination;
 
-	@Column(name="DEPARTURE_DATE")
-	private Timestamp departureDate;
-
-	@Column(name="NUM_OF_PASSENGERS")
-	private BigDecimal numOfPassengers;
+	
 
 	private BigDecimal price;
 	 
@@ -72,21 +72,7 @@ public class Flight implements Serializable {
 		this.deaprtureTime = deaprtureTime;
 	}
 
-	public Timestamp getDepartureDate() {
-		return this.departureDate;
-	}
-
-	public void setDepartureDate(Timestamp departureDate) {
-		this.departureDate = departureDate;
-	}
-
-	public BigDecimal getNumOfPassengers() {
-		return this.numOfPassengers;
-	}
-
-	public void setNumOfPassengers(BigDecimal numOfPassengers) {
-		this.numOfPassengers = numOfPassengers;
-	}
+	
 
 	public BigDecimal getPrice() {
 		return this.price;
@@ -94,6 +80,34 @@ public class Flight implements Serializable {
 
 	public void setPrice(BigDecimal price) {
 		this.price = price;
+	}
+
+	/**
+	 * @return the source
+	 */
+	public String getSource() {
+		return source;
+	}
+
+	/**
+	 * @param source the source to set
+	 */
+	public void setSource(String source) {
+		this.source = source;
+	}
+
+	/**
+	 * @return the destination
+	 */
+	public String getDestination() {
+		return destination;
+	}
+
+	/**
+	 * @param destination the destination to set
+	 */
+	public void setDestination(String destination) {
+		this.destination = destination;
 	}
 	
 }

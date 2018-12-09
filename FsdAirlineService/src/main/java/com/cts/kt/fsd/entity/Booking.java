@@ -1,6 +1,8 @@
 package com.cts.kt.fsd.entity;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -19,6 +21,13 @@ public class Booking implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="BOOKING_ID")
 	private long bookingId;
+	
+	@Column(name="DEPARTURE_DATE")
+	private Date departureDate;
+	@Column(name="NUM_OF_PASSENGERS")
+	private int numOfPassengers;
+	@Transient
+	private Double totalCost;
 
 	//uni-directional many-to-one association to Customer
 	@ManyToOne(fetch=FetchType.LAZY)
@@ -58,5 +67,47 @@ public class Booking implements Serializable {
 	public void setFlight(Flight flight) {
 		this.flight = flight;
 	}
+
+	/**
+	 * @return the departureDate
+	 */
+	public Date getDepartureDate() {
+		return departureDate;
+	}
+
+	/**
+	 * @param departureDate the departureDate to set
+	 */
+	public void setDepartureDate(Date departureDate) {
+		this.departureDate = departureDate;
+	}
+
+	
+
+	/**
+	 * @return the numOfPassengers
+	 */
+	public int getNumOfPassengers() {
+		return numOfPassengers;
+	}
+
+	/**
+	 * @param numOfPassengers the numOfPassengers to set
+	 */
+	public void setNumOfPassengers(int numOfPassengers) {
+		this.numOfPassengers = numOfPassengers;
+	}
+
+	@Transient
+	public Double getTotalCost() {
+		if(null!=this.flight && null!=this.flight.getPrice()) {
+			totalCost=this.flight.getPrice().doubleValue()*this.numOfPassengers;
+		}else {
+			totalCost=(double) 0;
+		}
+		return totalCost;
+	}
+
+	
 
 }
