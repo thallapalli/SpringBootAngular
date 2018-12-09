@@ -25,4 +25,20 @@ public class FlightService {
 
 	}
 
+	public Flight saveFlight(Flight flight) {
+		return flightRepository.save(flight);
+
+	}
+
+	public void deleteFlight(Flight flight) {
+		flightRepository.delete(flight);
+
+	}
+
+	public Flight updateFlight(Flight flight) {
+		Flight savedflight = flightRepository.save(flight);
+		return savedflight;
+
+	}
+
 }

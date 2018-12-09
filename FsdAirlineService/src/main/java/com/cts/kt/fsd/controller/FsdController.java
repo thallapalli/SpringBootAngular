@@ -90,4 +90,26 @@ public class FsdController {
 
 	}
 	
+	
+	
+	
+	@RequestMapping(value = "/fsd/createflight", method = RequestMethod.POST)
+	public Flight createFlight(@RequestBody Flight flight) {
+		Flight createdFlight = flightService.saveFlight(flight);
+		return createdFlight;
+
+	}
+
+	@DeleteMapping("/fsd/{flightid}/delete")
+	public void deleteFlight(@PathVariable Long flightId) {
+		bookingRepository.deleteById(flightId);
+
+	}
+	@RequestMapping(value = "/fsd/updateflight", method = RequestMethod.PUT)
+	public Flight updateFlight(@RequestBody Flight flight) {
+		Flight updatedFlight = flightService.updateFlight(flight);
+		return updatedFlight;
+
+	}
+	
 }
