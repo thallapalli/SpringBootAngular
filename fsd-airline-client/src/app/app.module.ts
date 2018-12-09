@@ -24,6 +24,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PoliciesComponent } from './components/policies/policies.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
+import { BookingComponent } from './components/booking/booking.component';
+import { FlightComponent } from './components/flight/flight.component';
 
 
 
@@ -37,6 +39,8 @@ import { HomeComponent } from './components/home/home.component';
     PoliciesComponent,
     NavbarComponent,
     HomeComponent,
+    BookingComponent,
+    FlightComponent,
    
     
   
