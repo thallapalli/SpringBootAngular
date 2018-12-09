@@ -42,7 +42,7 @@ Hibernate: create sequence hr.hibernate_sequence start with 1 increment by 1
 
 INSERT INTO "FSD"."FLIGHT" (FLIGHT_ID, AIRLINE, ARRIVAL_TIME, DEAPRTURE_TIME, DEPARTURE_DATE, NUM_OF_PASSENGERS, PRICE) VALUES ('1', 'SouthWest', '7.30', '12.20', TO_TIMESTAMP('2018-12-19 01:24:47.299000000', 'YYYY-MM-DD HH24:MI:SS.FF'), '2', '200')
 
- 
+ --
  
  
  
