@@ -1,7 +1,16 @@
 package com.cts.kt.fsd.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.*;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 /**
@@ -10,7 +19,9 @@ import javax.persistence.*;
  */
 @Entity
 @NamedQuery(name="Customer.findAll", query="SELECT c FROM Customer c")
-public class Customer implements Serializable {
+public class Customer implements Serializable, UserDetails {
+	
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -21,7 +32,9 @@ public class Customer implements Serializable {
 	private String email;
 
 	private String password;
-
+	@Transient
+	 private String  role;
+	public static enum Role{ ROLE_USER }
 	public Customer() {
 	}
 
@@ -48,5 +61,55 @@ public class Customer implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	@JsonIgnore
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		Collection<GrantedAuthority> authorities = new ArrayList<>();
+		authorities.add(new SimpleGrantedAuthority("USER"));
+		return authorities;
+	}
+	
+	
+	@Transient
+	/**
+	 * @return the role
+	 */
+	public String getRole() {
+		return "USER";
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		//TODO seprate it from email ,remove @
+		return this.getEmail();
+		
+	}
+
+	@JsonIgnore
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
+
+	@JsonIgnore
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@JsonIgnore
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@JsonIgnore
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+	
 
 }

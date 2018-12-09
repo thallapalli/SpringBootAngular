@@ -10,62 +10,18 @@ GRANT "DBA" TO FSD WITH ADMIN OPTION;
 ALTER USER FSD DEFAULT ROLE "DBA";
 
 
-
-CREATE TABLE FSD.FSD_CUSTOMER 
-(
-  CUSTOMER_ID NUMBER NOT NULL 
-, EMAIL VARCHAR2(20) NOT NULL 
-, PASSWORD VARCHAR2(20) NOT NULL 
-, CONSTRAINT FSD_CUSTOMER_PK PRIMARY KEY 
-  (
-    ID 
-  )
-  ENABLE 
-);
-
-CREATE TABLE "FSD1"."FLIGHT" 
-   (	"FLIGHT_ID" NUMBER(19,0) NOT NULL ENABLE, 
-	"AIRLINE" VARCHAR2(255 CHAR), 
-	"ARRIVAL_TIME" VARCHAR2(255 CHAR), 
-	"DEAPRTURE_TIME" VARCHAR2(255 CHAR), 
-	"DEPARTURE_DATE" TIMESTAMP (6), 
-	"NUM_OF_PASSENGERS" NUMBER(10,0) NOT NULL ENABLE, 
-	"PRICE" NUMBER(19,0), 
-	 PRIMARY KEY ("FLIGHT_ID")
-  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 NOCOMPRESS LOGGING
-  TABLESPACE "USERS"  ENABLE
-   ) SEGMENT CREATION DEFERRED 
-  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
-  TABLESPACE "USERS" ;
-  
-   CREATE TABLE "FSD1"."BOOKING" 
-   (	"BOOKING_ID" NUMBER NOT NULL ENABLE, 
-	"FLIGHT_ID" NUMBER, 
-	"CUSTOMER_ID" NUMBER, 
-	 CONSTRAINT "BOOKING_PK" PRIMARY KEY ("BOOKING_ID")
-  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 NOCOMPRESS LOGGING
-  TABLESPACE "USERS"  ENABLE, 
-	 CONSTRAINT "FK_CUSTOMER_ID" FOREIGN KEY ("CUSTOMER_ID")
-	  REFERENCES "FSD1"."CUSTOMER" ("CUSTOMER_ID") ENABLE, 
-	 CONSTRAINT "FK_FLIGHT_ID" FOREIGN KEY ("FLIGHT_ID")
-	  REFERENCES "FSD1"."FLIGHT" ("FLIGHT_ID") ENABLE
-   ) SEGMENT CREATION DEFERRED 
-  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
-  TABLESPACE "USERS" ;
-  
-
-CREATE SEQUENCE FSD.HIBERNATE_SEQUENCE INCREMENT BY 1 START WITH 1 MAXVALUE 9999999 MINVALUE 1 NOCACHE ORDER;
-
-
-
-<! --backup sqls -->
-
-
-Hibernate: create table fsd.flight (flight_id number(19,0) not null, airline varchar2(255 char), arrival_time varchar2(255 char), deaprture_time varchar2(255 char), departure_date timestamp, num_of_passengers number(10,0) not null, price number(19,0), primary key (flight_id))
-Hibernate: create table fsd.fsd_customer (customer_id number(19,0) not null, email varchar2(255 char), password varchar2(255 char), primary key (customer_id))
-Hibernate: create sequence hr.hibernate_sequence start with 1 increment by 1
-
-<!-- end of backup sqls -->
+<!-- create tables -->
+Hibernate: drop table booking cascade constraints
+Hibernate: drop table customer cascade constraints
+Hibernate: drop table flight cascade constraints
+Hibernate: drop sequence hibernate_sequence
+Hibernate: create sequence hibernate_sequence start with 1 increment by  1
+Hibernate: create table booking (booking_id number(19,0) not null, departure_date timestamp, num_of_passengers number(10,0), customer_id number(19,0), flight_id number(19,0), primary key (booking_id))
+Hibernate: create table customer (customer_id number(19,0) not null, email varchar2(255 char), password varchar2(255 char), primary key (customer_id))
+Hibernate: create table flight (flight_id number(19,0) not null, airline varchar2(255 char), arrival_time varchar2(255 char), deaprture_time varchar2(255 char), destination varchar2(255 char), price number(19,2), source varchar2(255 char), primary key (flight_id))
+Hibernate: alter table booking add constraint FKlnnelfsha11xmo2ndjq66fvro foreign key (customer_id) references customer
+Hibernate: alter table booking add constraint FK546eybei9q7dsna94vryofrbr foreign key (flight_id) references flight
+<!-- -->
 
 <! -- data setup -->
 
@@ -83,6 +39,21 @@ INSERT INTO "FSD1"."BOOKING" (BOOKING_ID, DEPARTURE_DATE, NUM_OF_PASSENGERS, CUS
  add below
  @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
  
+ 
+ add this in webconfig for no password encoder
+ 
+ @SuppressWarnings("deprecation")
+	@Bean
+	public static NoOpPasswordEncoder passwordEncoder() {
+	return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
+	}
+	
+	Issue 3
+	A granted authority textual representation is required
+	
+ added 
+ 
+ authorities.add(new SimpleGrantedAuthority("USER"));
  
  
  
