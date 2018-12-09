@@ -7,6 +7,7 @@ export class User {
   lastName:string="";
   email:string="";
   contactNum:string="";
+  customerId:string="";
 
 }
 
