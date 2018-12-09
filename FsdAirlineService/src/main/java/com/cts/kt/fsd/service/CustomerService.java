@@ -50,7 +50,13 @@ public class CustomerService implements UserDetailsService {
 		logger.info(" start loadUserByUsername "+username);
 
 		Customer customer = fsdCustomerRepository.findByEmail(username);
+		
+		
 		logger.info(" end loadUserByUsername"+username);
+		if(null!=customer) {
+			logger.info(" customer info "+customer.getCustomerId()+" "+customer.getRole());
+			 
+		}
 		return customer;
 	}
 	

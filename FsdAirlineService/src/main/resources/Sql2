@@ -11,16 +11,19 @@ ALTER USER FSD DEFAULT ROLE "DBA";
 
 
 <!-- create tables -->
+
+
 Hibernate: drop table booking cascade constraints
 Hibernate: drop table customer cascade constraints
 Hibernate: drop table flight cascade constraints
 Hibernate: drop sequence hibernate_sequence
 Hibernate: create sequence hibernate_sequence start with 1 increment by  1
 Hibernate: create table booking (booking_id number(19,0) not null, departure_date timestamp, num_of_passengers number(10,0), customer_id number(19,0), flight_id number(19,0), primary key (booking_id))
-Hibernate: create table customer (customer_id number(19,0) not null, email varchar2(255 char), password varchar2(255 char), primary key (customer_id))
+Hibernate: create table customer (customer_id number(19,0) not null, email varchar2(255 char), password varchar2(255 char), role varchar2(255 char), primary key (customer_id))
 Hibernate: create table flight (flight_id number(19,0) not null, airline varchar2(255 char), arrival_time varchar2(255 char), deaprture_time varchar2(255 char), destination varchar2(255 char), price number(19,2), source varchar2(255 char), primary key (flight_id))
 Hibernate: alter table booking add constraint FKlnnelfsha11xmo2ndjq66fvro foreign key (customer_id) references customer
 Hibernate: alter table booking add constraint FK546eybei9q7dsna94vryofrbr foreign key (flight_id) references flight
+
 <!-- -->
 
 <! -- data setup -->

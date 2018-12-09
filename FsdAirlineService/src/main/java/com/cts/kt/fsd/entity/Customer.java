@@ -32,8 +32,8 @@ public class Customer implements Serializable, UserDetails {
 	private String email;
 
 	private String password;
-	@Transient
-	 private String  role;
+	@Column(name="ROLE" )
+	private String  role;
 	public static enum Role{ ROLE_USER }
 	public Customer() {
 	}
@@ -71,7 +71,14 @@ public class Customer implements Serializable, UserDetails {
 	}
 	
 	
-	@Transient
+	
+	/**
+	 * @param role the role to set
+	 */
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	/**
 	 * @return the role
 	 */

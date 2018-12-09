@@ -29,9 +29,11 @@ import com.cts.kt.fsd.service.CustomerService;
 @EnableWebSecurity
 public class WebConfig extends WebSecurityConfigurerAdapter{
 	public static final Logger logger = LoggerFactory.getLogger(WebConfig.class);
+	
+	public static final String[] PROTECTED_RESOURCES = new String[] {  "/fsd/fetchallusers","fsd/test" };
 
 	@Autowired
-	CustomerService appUserDetailsService;
+	CustomerService customerDetailsService;
 
 	// This method is for overriding the default AuthenticationManagerBuilder.
 	// We can specify how the user details are kept in the application. It may
@@ -39,7 +41,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		logger.info(" start configure ");
-		auth.userDetailsService(appUserDetailsService);
+		auth.userDetailsService(customerDetailsService);
 		logger.info(" end configure ");
 	}
 
@@ -69,16 +71,18 @@ public class WebConfig extends WebSecurityConfigurerAdapter{
 	// We can specify our authorization criteria inside this method.
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		//add @Overrider
 		logger.info(" start configure");
 		
 		http.cors().and()
 		// starts authorizing configurations
 		.authorizeRequests()
 		// ignoring the guest's urls "
-		//.antMatchers("/fsd/register","/fsd/login","/logout","/**").permitAll() //to disable security
+		//.antMatchers("/**").permitAll() //to disable security
 		.antMatchers("/fsd/register","/fsd/login","/logout").permitAll()
 		// authenticate all remaining URLS
-		.anyRequest().fullyAuthenticated().and()
+		.anyRequest().fullyAuthenticated()
+		.and()
       /* "/logout" will log the user out by invalidating the HTTP Session,
        * cleaning up any {link rememberMe()} authentication that was configured, */
 		.logout()
@@ -91,12 +95,14 @@ public class WebConfig extends WebSecurityConfigurerAdapter{
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).and()
 		// disabling the CSRF - Cross Site Request Forgery
 		 .csrf().disable();
-		 //.addFilter(new JWTAuthenticationFilter(authenticationManager()))
-		// .addFilter(new JWTAuthorizationFilter(authenticationManager()));
+		// .addFilter(new JWTAuthenticationFilter(authenticationManager()))
+		//.addFilter(new JWTAuthorizationFilter(authenticationManager()));
 		logger.info(" end configure");
 		
 		
 	}
+	
+	
 	
 	@SuppressWarnings("deprecation")
 	@Bean
