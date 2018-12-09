@@ -35,9 +35,9 @@ export class BookingComponent implements OnInit {
         this.bookingService.getAllBookings()
 	  .subscribe(
                 data => this.bookings = data,
-                errorCode =>  this.statusCode = errorCode);   
                 
-                console.log(this.statusCode);
+                errorCode =>  this.statusCode = errorCode);   
+               
    }
   
   onBookingFormSubmit() {

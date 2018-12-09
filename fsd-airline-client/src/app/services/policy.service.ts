@@ -25,7 +25,7 @@ export class PolicyService {
     headers.append("Authorization", "Basic " + base64Credential);
     let options = new RequestOptions();
     options.headers=headers;
-    return this.http.get('localhost:8080/fsd/fetchallbookings',options).map(this.extractData)
+    return this.http.get('http:localhost:8080/fsd/fetchallbookings',options).map(this.extractData)
 	   .catch(this.handleError);;
   }
   

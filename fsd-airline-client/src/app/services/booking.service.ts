@@ -22,6 +22,8 @@ export class BookingService {
      var usr=localStorage.getItem('user');
     var localst= localStorage.getItem('currentUser');
      var base64Credential: string = btoa(usr + ':' + pwd);
+     
+     console.log("Gere ---------"+usr + ':' + pwd)
     headers.append("Authorization", "Basic " + base64Credential);
     let options = new RequestOptions();
     options.headers=headers;
@@ -43,7 +45,7 @@ export class BookingService {
     let options = new RequestOptions();
     options.headers=headers;
     
-        return this.http.put('http://localhost:9090/fsd/createbooking', booking, options)
+        return this.http.put('http://localhost:8080/fsd/createbooking', booking, options)
                .map(success => success.status)
                .catch(this.handleError);
     }
@@ -85,6 +87,8 @@ export class BookingService {
                .catch(this.handleError);
     }
      private extractData(res: Response) {
+     
+     
 	 let body = res.json();
         return body;
     }
