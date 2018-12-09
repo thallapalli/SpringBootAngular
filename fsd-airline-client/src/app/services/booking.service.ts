@@ -13,7 +13,7 @@ export class BookingService {
 
  constructor(private http: Http) {
   }
-  etAllBookings(): Observable<Booking[]> {
+  getAllBookings(): Observable<Booking[]> {
    let headers = new Headers();
     
     headers.append('Accept', 'application/json')
@@ -25,7 +25,7 @@ export class BookingService {
     headers.append("Authorization", "Basic " + base64Credential);
     let options = new RequestOptions();
     options.headers=headers;
-    return this.http.get('localhost:8080/fsd/fetchallbookings',options).map(this.extractData)
+    return this.http.get('http://localhost:8080/fsd/fetchallbookings',options).map(this.extractData)
 	   .catch(this.handleError);;
   }
   
@@ -37,6 +37,8 @@ export class BookingService {
      var usr=localStorage.getItem('user');
     var localst= localStorage.getItem('currentUser');
      var base64Credential: string = btoa(usr + ':' + pwd);
+     
+     console.log("Here -------------"+usr + ':' + pwd)
     headers.append("Authorization", "Basic " + base64Credential);
     let options = new RequestOptions();
     options.headers=headers;

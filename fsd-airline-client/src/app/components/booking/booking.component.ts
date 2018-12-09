@@ -15,7 +15,7 @@ export class BookingComponent implements OnInit {
   bookings:Booking[];
    statusCode: number;
    requestProcessing = false;
-   policyIdToUpdate = null;
+   bookingIdToUpdate = null;
    processValidation = false;
    
     //Create form
@@ -81,8 +81,8 @@ export class BookingComponent implements OnInit {
       this.preProcessConfigurations();
       this.bookingService.getBookingById(bookingId)
 	   .subscribe(booking => {
-	            this.bookingIdToUpdate = policy.id;   
-	            this.bookingForm.setValue({ bookingId:policy.bookingId,numOfPassengers:policy.numOfPassengers,totalCost:policy.totalCost });
+	            this.bookingIdToUpdate = booking.bookingId;   
+	            this.bookingForm.setValue({ bookingId:booking.bookingId,numOfPassengers:booking.numOfPassengers,totalCost:booking.totalCost });
 	   	    this.processValidation = true;
 		    this.requestProcessing = false;   
 	   },

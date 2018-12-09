@@ -28,7 +28,7 @@ export class AuthService {
       if (user) {
       console.log("storing pwd in local"+pwd);
       localStorage.setItem('pwd',pwd);
-      localStorage.setItem('user',user.username);
+      localStorage.setItem('user',user.email);
         // store user details  in local storage to keep user logged in between page refreshes
         localStorage.setItem('currentUser', JSON.stringify(user));
         
